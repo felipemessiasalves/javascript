@@ -10,7 +10,6 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("Conectou ao banco.");
     app.emit("pronto");
   })
   .catch((e) => console.log(e));
