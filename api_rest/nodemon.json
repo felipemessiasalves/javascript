@@ -1,7 +1,4 @@
 {
-  "watch": ["*.js", "routes/*", "models/*"],
-  "ignore": ["node_modules/*"],
-  "ext": "js,json,cjs,mjs",
   "execMap": {
     "js": "node -r sucrase/register"
   }
