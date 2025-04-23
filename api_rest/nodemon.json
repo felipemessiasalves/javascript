@@ -1,8 +1,5 @@
 {
-  "scripts": {
-    "dev": "nodemon src/server.js",
-    "execMap": {
-      "js": "node -r sucrase/register"
-    }
+  "execMap": {
+    "js": "node -r sucrase/register"
   }
 }
