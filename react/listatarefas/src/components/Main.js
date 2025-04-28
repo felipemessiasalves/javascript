@@ -1,42 +1,56 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
 
 // Form
-import { FaPlus } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa"
 
 // Tarefas
-import { FaEdit, FaWindowClose } from "react-icons/fa";
+import { FaEdit, FaWindowClose } from "react-icons/fa"
 
-import "./Main.css";
+import "./Main.css"
 
 export default class Main extends Component {
   state = {
     novaTarefa: "",
     tarefas: []
-  };
+  }
 
   handleSubmit = (e) => {
-    e.preventDefault();
-    const { tarefas } = this.state;
-    let { novaTarefa} = this.state;
-    novaTarefa = novaTarefa.trim();
+    e.preventDefault()
+    const { tarefas } = this.state
+    let { novaTarefa} = this.state
+    novaTarefa = novaTarefa.trim()
 
     if(tarefas.indexOf(novaTarefa) !== -1) return;
 
-    const novasTarefas = [...tarefas];
+    const novasTarefas = [...tarefas]
 
     this.setState({
-      tarefas: [...novasTarefas, novaTarefa],
+      tarefas: [...novasTarefas, novaTarefa]
     })
   }
 
   handleChange = (e) => {
     this.setState({
-      novaTarefa: e.target.value,
-    });
-  };
+      novaTarefa: e.target.value
+    })
+  }
+
+  handleEdit = (e, index) => {
+    console.log('Edit', index)
+  }
+
+  handleDelete = (e, index) => {
+    const {tarefas} = this.state
+    const novasTarefas = [...tarefas]
+    novasTarefas.splice(index, 1)
+
+    this.setState({
+      tarefas: [...novasTarefas]
+    })
+  }
 
   render() {
-    const { novaTarefa, tarefas } = this.state;
+    const { novaTarefa, tarefas } = this.state
 
     return (
       <div className="main">
@@ -50,17 +64,17 @@ export default class Main extends Component {
         </form>
 
         <ul className="tarefas">
-          {tarefas.map(tarefa => (
+          {tarefas.map((tarefa, index) => (
             <li key={tarefa}>
               {tarefa}
               <span>
-                <FaEdit className="edit" />
-                <FaWindowClose className="delete" />
+                <FaEdit onClick={(e) => this.handleEdit(e, index)} className="edit" />
+                <FaWindowClose onClick={(e) => this.handleDelete(e, index)} className="delete" />
               </span>
             </li>
           ))}
         </ul>
       </div>
-    );
+    )
   }
 }
